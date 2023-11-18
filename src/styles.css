@@ -23,6 +23,7 @@ body {
 }
 
 button.primary {
+  font-weight: 700;
   padding: 10px;
   border: solid 1px var(--primary-color);
   background: var(--primary-color);
