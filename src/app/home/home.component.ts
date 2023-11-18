@@ -5,8 +5,14 @@ import { CommonModule } from '@angular/common';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule],
-  template: ` <p>Home component</p> `,
+  template: `
+    <section>
+      <form>
+        <input type="text" placeholder="Filter by city" />
+        <button type="button" class="primary">Search</button>
+      </form>
+    </section>
+  `,
   styleUrl: './home.component.css',
 })
-
 export class HomeComponent {}
