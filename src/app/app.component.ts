@@ -4,9 +4,21 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   standalone: true,
   imports: [],
-  template: `<h1>Home App</h1>`,
+  template: `
+    <main>
+      <header class="brand-name">
+        <img
+          class="brand-logo"
+          src="/assets/logo.svg"
+          alt="logo"
+          aria-hidden="true"
+        />
+      </header>
+    </main>`
+    ,
   styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent {
   title = 'Home App';
 }
