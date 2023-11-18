@@ -14,9 +14,9 @@ import { HomeComponent } from './home/home.component';
         aria-hidden="true"
       />
     </header>
-    <section class="container">
+    <main class="container">
       <app-home></app-home>
-    </section>
+    </main>
   </div>`,
   styleUrls: ['./app.component.css'],
 })
