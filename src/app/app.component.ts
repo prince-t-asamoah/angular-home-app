@@ -5,9 +5,8 @@ import { HomeComponent } from './home/home.component';
   selector: 'app-root',
   standalone: true,
   imports: [HomeComponent],
-  template: `
-  <main>
-    <header class="brand-name">
+  template: ` <div class="app">
+    <header class="container">
       <img
         class="brand-logo"
         src="/assets/logo.svg"
@@ -15,10 +14,10 @@ import { HomeComponent } from './home/home.component';
         aria-hidden="true"
       />
     </header>
-    <section class="content">
+    <section class="container">
       <app-home></app-home>
     </section>
-  </main>`,
+  </div>`,
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
