@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HomeComponent],
+  imports: [HomeComponent, RouterModule],
   template: ` <div class="app">
     <header class="container">
       <img
@@ -15,7 +16,7 @@ import { HomeComponent } from './home/home.component';
       />
     </header>
     <main class="container">
-      <app-home></app-home>
+      <router-outlet></router-outlet>
     </main>
   </div>`,
   styleUrls: ['./app.component.css'],
