@@ -47,7 +47,6 @@ import { HousingLocation } from '../@types/housing-location';
   </article>`,
   styleUrl: './details.component.css',
 })
-
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
@@ -57,11 +56,12 @@ export class DetailsComponent {
     lastName: new FormControl(''),
     email: new FormControl(''),
   });
- 
+
   constructor() {
     const housingLocationId = Number(this.route.snapshot.params['id']);
-    this.housingLocation =
-      this.housingService.getHousingLocationById(housingLocationId);
+    this.housingService
+      .getHousingLocationById(housingLocationId)
+      .then((housingLocation) => (this.housingLocation = housingLocation));
   }
 
   submitApplication() {
@@ -69,6 +69,6 @@ export class DetailsComponent {
       this.applyForm.value.firstName ?? '',
       this.applyForm.value.lastName ?? '',
       this.applyForm.value.email ?? ''
-    )
+    );
   }
 }
