@@ -3,13 +3,19 @@ import { HousingLocation } from '../@types/housing-location';
 import listings from '../data/listings';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HousingService {
   protected housingLocationList: HousingLocation[] = listings;
-  constructor() { }
+  constructor() {}
 
   getAllHousingLocations(): HousingLocation[] {
     return this.housingLocationList;
+  }
+
+  getHousingLocationById(id: number): HousingLocation | undefined {
+    return this.housingLocationList.find(
+      (housingLocation) => housingLocation.id === id
+    );
   }
 }
