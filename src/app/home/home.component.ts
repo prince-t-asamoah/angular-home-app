@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
 import { HousingLocation } from '../@types/housing-location';
-import listings from '../data/listings';
+import { HousingService } from '../services/housing.service';
 
 @Component({
   selector: 'app-home',
@@ -26,5 +26,10 @@ import listings from '../data/listings';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  housingLocationList: HousingLocation[] = listings;
+  housingLocationList: HousingLocation[] = [];
+  housingService: HousingService = inject(HousingService);
+
+  constructor() {
+    this.housingLocationList = this.housingService.getAllHousingLocations();
+  }
 }
