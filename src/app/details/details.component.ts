@@ -1,15 +1,16 @@
-import { HousingService } from './../services/housing.service';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { HousingService } from './../services/housing.service';
 import { HousingLocation } from '../@types/housing-location';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-  <article class="listing">
+  imports: [CommonModule, ReactiveFormsModule],
+  template: ` <article class="listing">
     <div class="listing-photo">
       <img [src]="housingLocation?.photo" [alt]="housingLocation?.name" />
     </div>
@@ -32,17 +33,26 @@ import { HousingLocation } from '../@types/housing-location';
       </section>
       <section class="listing-apply">
         <h2 class="section-heading">Apply now to live here</h2>
-        <button class="primary">Apply now</button>
+        <form>
+          <label for="first-name">First Name</label>
+          <input type="text" formControlName="firstName" id="first-name" />
+          <label for="last-name">Last Name</label>
+          <input type="text" formControlName="lastName" id="last-name" />
+          <label for="email">Email</label>
+          <input type="text" formControlName="email" id="email" />
+          <button class="primary" type="submit">Apply now</button>
+        </form>
       </section>
     </div>
   </article>`,
   styleUrl: './details.component.css',
 })
+
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   housingService = inject(HousingService);
   housingLocation: HousingLocation | undefined;
-
+ 
   constructor() {
     const housingLocationId = Number(this.route.snapshot.params['id']);
     this.housingLocation =
