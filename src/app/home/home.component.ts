@@ -10,26 +10,32 @@ import { HousingService } from '../services/housing.service';
   standalone: true,
   imports: [CommonModule, HousingLocationComponent],
   template: `
-    <section>
-      <form>
-        <input type="text" placeholder="Filter by city" #filter />
+    <section class="flex justify-center">
+      <form class="w-6/12 mt-10 flex">
+        <input
+          type="text"
+          placeholder="Filter by city"
+          #filter
+          class="w-10/12 px-5 py-2 border border-primary-color rounded-l-md focus:outline-none focus:bg-accent-color transition-colors"
+        />
         <button
           type="button"
-          class="primary"
+          class="w-2/12 text-white bg-primary-color rounded-r-md"
           (click)="filterResults(filter.value)"
         >
           Search
         </button>
       </form>
     </section>
-    <section class="listings">
+    <section
+      class="mt-10 grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+    >
       <app-housing-location
         *ngFor="let housingLocation of filteredLocationList"
         [housingLocation]="housingLocation"
       ></app-housing-location>
     </section>
   `,
-  styleUrl: './home.component.css',
 })
 export class HomeComponent {
   housingLocationList: HousingLocation[] = [];
