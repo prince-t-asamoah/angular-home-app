@@ -10,42 +10,78 @@ import { HousingLocation } from '../@types/housing-location';
   selector: 'app-details',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  template: ` <article class="listing">
-    <div class="listing-photo">
-      <img [src]="housingLocation?.photo" [alt]="housingLocation?.name" />
+  template: ` <article class="mt-20 h-full flex flex-row-reverse gap-10">
+    <div class="w-6/12">
+      <img
+        [src]="housingLocation?.photo"
+        [alt]="housingLocation?.name"
+        class="object-contain rounded-lg"
+      />
     </div>
-    <div class="listing-info">
-      <section class="listing-description">
-        <h2 class="listing-heading">{{ housingLocation?.name }}</h2>
-        <p class="listing-location">
+    <div class="w-6/12">
+      <section>
+        <h2 class="text-[48pt] font-bold mb-4">{{ housingLocation?.name }}</h2>
+        <p class="text-[24pt] mb-4">
           {{ housingLocation?.city }}, {{ housingLocation?.state }}
         </p>
       </section>
-      <section class="listing-features">
-        <h2 class="section-heading">About this housing location</h2>
+      <section class="mb-5 before:bg-[url('/assets/location-pin.svg')]">
+        <div class="flex items-center mb-4">
+          <img src="/assets/location-pin.svg" />
+          <h2 class="text-secondary-color text-[24pt]">
+            About this housing location
+          </h2>
+        </div>
         <ul>
-          <li>Units available: {{ housingLocation?.availableUnits }}</li>
-          <li>Does this location have wifi: {{ housingLocation?.hasWifi }}</li>
-          <li>
+          <li class="text-[14pt]">
+            Units available: {{ housingLocation?.availableUnits }}
+          </li>
+          <li class="text-[14pt]">
+            Does this location have wifi: {{ housingLocation?.hasWifi }}
+          </li>
+          <li class="text-[14pt]">
             Does this location have laundry: {{ housingLocation?.hasLaundary }}
           </li>
         </ul>
       </section>
-      <section class="listing-apply">
-        <h2 class="section-heading">Apply now to live here</h2>
-        <form [formGroup]="applyForm">
-          <label for="first-name">First Name</label>
-          <input type="text" formControlName="firstName" id="first-name" />
-          <label for="last-name">Last Name</label>
-          <input type="text" formControlName="lastName" id="last-name" />
-          <label for="email">Email</label>
-          <input type="text" formControlName="email" id="email" />
+      <section>
+        <h2 class="text-[18pt] mb-4">Apply now to live here</h2>
+        <form [formGroup]="applyForm" class="flex flex-col gap-2 my-8">
+          <label class="mb-5">
+            <span class="text-[12pt] font-bold text-secondary-color mb-2 block"
+              >First Name</span
+            >
+            <input
+              type="text"
+              formControlName="firstName"
+              class="text-[12pt] text-gray-700 w-full px-2.5 py-1.5 border-b border-b-secondary-color focus:outline-none focus:bg-accent-color transition-colors duration-700"
+            />
+          </label>
+          <label class="mb-5">
+            <span class="text-[12pt] font-bold text-secondary-color mb-2 block"
+              >Last Name</span
+            >
+            <input
+              type="text"
+              formControlName="lastName"
+              class="text-[12pt] text-gray-700 w-full px-2.5 py-1.5 border-b border-b-secondary-color focus:outline-none focus:bg-accent-color transition-colors duration-700"
+            />
+          </label>
+          <label class="mb-5">
+            <span class="text-[12pt] font-bold text-secondary-color mb-2 block"
+              >Email</span
+            >
+            <input
+              type="text"
+              formControlName="email"
+              class="text-[12pt] text-gray-700 w-full px-2.5 py-1.5 border-b border-b-secondary-color focus:outline-none focus:bg-accent-color transition-colors duration-700"
+            />
+          </label>
           <button class="primary" type="submit">Apply now</button>
         </form>
       </section>
     </div>
   </article>`,
-  styleUrl: './details.component.css',
 })
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
